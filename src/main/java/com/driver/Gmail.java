@@ -44,14 +44,16 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox,
         // move the mail to trash, else do nothing
-          int size=getInboxSize();
-          for(int i=0;i<size;i++){
-              Mail mail=inbox.get(i);
-              if(mail.getMessage().equals(message)){
-                  inbox.remove(i);
-                  trash.add(mail);
-              }
-          }
+        int i = 0;
+        while(i < getInboxSize()) {
+            Mail mail=inbox.get(i);
+            if(mail.getMessage().equals(message)){
+                inbox.remove(i);
+                trash.add(mail);
+            } else {
+                i++;
+            }
+        }
     }
 
     public String findLatestMessage(){
